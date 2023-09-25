@@ -4,43 +4,23 @@ Global configurations at eORCA12 and eORCA025
 
 ## Quick start on {Archer2|Anemone} ({UK National| NOC} Supercomputing Service)
 ```shell
-git clone git@github.com:NOC-MSM/NOC_Near_Present_Day.git {-b NEMO_v4.0}
-cd NOC_Near_Present_Day
-./setup -s {Archer2|Anemone}
+git clone git@github.com:NOC-MSM/RAPID-Evolution.git 
+cd RAPID-Evolution
+./setup {-s Archer2}
 ```
-The setup script downloads nemo, compiles tools and configurations.
+The setup script downloads nemo, compiles tools and configurations. Setup defaults to Anemone, which is ideally suited for fast development/turnaround of smaller configurations (e.g. eORCA025). 
 
-To run NEMO:
+### For Development 
+
+The global eORCA025 configuration is ready to run. All that is required is:
+
 ```shell
-cd nemo/cfgs/GLOBAL_QCO/eORCA12
-
-or 
-
 cd nemo/cfgs/GLOBAL_QCO/eORCA025
-```
-and create a runscript.
 
-Example `mkslurm_NPD` settings for eORCA12 production runs on Archer2:
-```shell
-../../../scripts/python/mkslurm_NPD -S 48 -s 16 -m 1 -C 5504 -g 0 -a n01-CLASS -j eORCA12 -t 1-00:00:00 --gnu > run_nemo5504_48X.slurm
-
-../../../scripts/python/mkslurm_NPD -S 48 -s 16 -m 1 -C 8238 -g 0 -a n01-CLASS -j eORCA12 -t 0-00:10:00 --gnu > run_nemo8238_48X.slurm
-
-../../../scripts/python/mkslurm_NPD -S 48 -s 16 -m 1 -C 11168 -g 0 -a n01-CLASS -j eORCA12 -t 0-00:10:00 --gnu > run_nemo11168_48X.slurm
+qsub run_nemo1326_24x_v2.slurm
 ```
 
-Example `mkslurm_NPD` settings for production runs on Anemone:
-```shell
-../../../scripts/python/mkslurm_NPD -S 24 -m 1 -C 3496 -j eORCA12 -t 00:20:00 > run_nemo3496_24X.slurm
-```
-
-For eORCA025, can use the existing runscript:
-```shell
-run_nemo1326_24x_v2.slurm
-```
-
-
-There are a few variables to set in `run_nemo.slurm`. For example, the following variables will generate a 2-hour simulation split in 1-hour jobs.
+There are a few variables to set in the runscript. For example, the following variables will generate a 2-hour simulation split in 1-hour jobs.
 ```bash
 # ========================================================
 # PARAMETERS TO SET
@@ -52,24 +32,66 @@ LENGTH=2
 # PARENT_IT000 != 0 -> auto-resubmission is switched OFF
 PARENT_IT000=0
 # Name of this script (to resubmit)
-SCRIPTNAME=run_nemo-short.slurm
+SCRIPTNAME=run_nemo.slurm
 # =======================================================
 ```
+
+We will start by implementing a 1/12° nest in eORCA025. This will enable faster testing and development, and provide a template for reproducing the domain at higher resolution.
+
+
+### Submitting on Archer2 
+
+Simulations of eORCA12 with or without nests are best done on Archer2. 
+
+Change directory to the NEMO experiment directory:
+```shell
+cd nemo/cfgs/GLOBAL_QCO/eORCA12
+```
+and create a runscript:
+
+Example `mkslurm_NPD` settings for eORCA12 production runs on Archer2:
+```shell
+../../../scripts/python/mkslurm_NPD -S 48 -s 16 -m 1 -C 5504 -g 0 -a n01-CLASS -j eORCA12 -t 1-00:00:00 --gnu > run_nemo5504_48X.slurm
+
+../../../scripts/python/mkslurm_NPD -S 48 -s 16 -m 1 -C 8238 -g 0 -a n01-CLASS -j eORCA12 -t 0-00:10:00 --gnu > run_nemo8238_48X.slurm
+
+../../../scripts/python/mkslurm_NPD -S 48 -s 16 -m 1 -C 11168 -g 0 -a n01-CLASS -j eORCA12 -t 0-00:10:00 --gnu > run_nemo11168_48X.slurm
+```
+
 Finally:
 ```shell
-sbatch run_nemo.slurm
+sbatch run_nemo[...].slurm
 ```
 
 
-
-
-## Setups
-### Global eORCA12
-Resolution:
-- Horizontal: 1/12°
-- Vertical: 75 levels
+## Configurations:
 
 ### Global eORCA025
 Resolution:
 - Horizontal: 1/4°
 - Vertical: 75 levels
+
+### Global eORCA025 - RAPID12 (in progress)
+Resolution:
+- Horizontal: 1/4°
+- Vertical: 75 levels
+- 1/12° AGRIF nest extending over 19°N-31°N
+
+
+### Global eORCA12
+Resolution:
+- Horizontal: 1/12°
+- Vertical: 75 levels
+
+### Global eORCA12 - RAPID12 (planned)
+Resolution:
+- Horizontal: 1/12°
+- Vertical: 75 levels
+- 1/36° AGRIF nest extending over 19°N-31°N
+
+### Global eORCA12 - RAPID12 - GSRIDGE36 (planned)
+Resolution:
+- Horizontal: 1/12°
+- Vertical: 75 levels
+- 1/36° AGRIF nest extending over 19°N-31°N
+- 1/36° AGRIF nest over the Greenland-Scotland Ridge (see IMMERSE WP6.2)
