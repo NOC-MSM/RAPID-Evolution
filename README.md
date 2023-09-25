@@ -3,7 +3,7 @@
 Global configurations at eORCA025 and eORCA12 with a high resolution nest covering the RAPID array and neighbouring latitudes in the North Atlantic.
 
 
-## Quick start on {Archer2|Anemone} ({UK National| NOC} Supercomputing Service)
+## Quick start on {Archer2|Anemone}
 ```shell
 git clone git@github.com:NOC-MSM/RAPID-Evolution.git 
 cd RAPID-Evolution
