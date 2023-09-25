@@ -1,6 +1,7 @@
-# NOC Near-Present-Day simulation
+# RAPID-Evolution
 
-Global configurations at eORCA12 and eORCA025
+Global configurations at eORCA025 and eORCA12 with a high resolution nest covering the RAPID array and neighbouring latitudes in the North Atlantic.
+
 
 ## Quick start on {Archer2|Anemone} ({UK National| NOC} Supercomputing Service)
 ```shell
