@@ -96,3 +96,16 @@ Resolution:
 - Vertical: 75 levels
 - 1/36° AGRIF nest extending over 19°N-31°N
 - 1/36° AGRIF nest over the Greenland-Scotland Ridge (see IMMERSE WP6.2)
+
+
+## Administrative notes:
+
+The RAPID-Evolution repo is forked from NOC_Near_Present_Day, with the NPD repo added as upstream:
+
+```
+git remote add upstream git@github.com:NOC-MSM/NOC_Near_Present_Day.git
+```
+
+This means that RAPID-Evolution can be synced with progress on NOC_Near_Present_Day. See:
+
+https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork
