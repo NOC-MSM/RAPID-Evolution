@@ -84,13 +84,13 @@ Resolution:
 - Horizontal: 1/12°
 - Vertical: 75 levels
 
-### Global eORCA12 - RAPID12 (planned)
+### Global eORCA12 - RAPID36 (planned)
 Resolution:
 - Horizontal: 1/12°
 - Vertical: 75 levels
 - 1/36° AGRIF nest extending over 19°N-31°N
 
-### Global eORCA12 - RAPID12 - GSRIDGE36 (planned)
+### Global eORCA12 - RAPID36 - GSRIDGE36 (planned)
 Resolution:
 - Horizontal: 1/12°
 - Vertical: 75 levels
