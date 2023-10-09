@@ -1,7 +1,7 @@
 ! Created by: print_concise_namelist_cfg -c ./namelist_cfg -r ./namelist_ref -overwrite False
 
 &namrun
-    cn_exp = 'eORCA025',
+    cn_exp = 'RAPID12',
 	nn_it000 = CHANGEME,
 	nn_itend = CHANGEME,
     nn_date0 = 19760101,
@@ -17,7 +17,7 @@
 /
 
 &namdom
-    rn_Dt = 1800.0,
+    rn_Dt = 600.0,
     rn_atfp = 0.05,
     ln_meshmask = .false.,
 /
@@ -56,20 +56,20 @@
        rn_stau_a = -2.9e-3   !     Alpha from eq. 10: Stau = Alpha * Wnd + Beta
        rn_stau_b =  8.0e-3   !     Beta
     cn_dir = './INPUT/JRA/',
-    sn_humi    = 'huss', 3, 'huss', .true.,  .false., 'yearly', 'weights_grid_jra_bilin_e025_nohaloes_full.nc', '', ''
-    sn_prec    = 'ptot', 3, 'ptot', .true.,  .false., 'yearly', 'weights_grid_jra_bilin_e025_nohaloes_full.nc', '', ''
-    sn_qlw     = 'rlds', 3, 'rlds', .false., .false., 'yearly', 'weights_grid_jra_bilin_e025_nohaloes_full.nc', '', ''
-    sn_qsr     = 'rsds', 3, 'rsds', .false., .false., 'yearly', 'weights_grid_jra_bilin_e025_nohaloes_full.nc', '', ''
-    sn_slp     = 'psl',  3, 'psl',  .true.,  .false., 'yearly', 'weights_grid_jra_bilin_e025_nohaloes_full.nc', '', ''
-    sn_snow    = 'prsn', 3, 'prsn', .true.,  .false., 'yearly', 'weights_grid_jra_bilin_e025_nohaloes_full.nc', '', ''
-    sn_tair    = 'tas',  3, 'tas',  .true.,  .false., 'yearly', 'weights_grid_jra_bilin_e025_nohaloes_full.nc', '', ''
-    sn_wndi    = 'uas',  3, 'uas',  .true.,  .false., 'yearly', 'weights_grid_jra_bicubic_e025_nohaloes_full.nc', 'Ume', ''
-    sn_wndj    = 'vas',  3, 'vas',  .true.,  .false., 'yearly', 'weights_grid_jra_bicubic_e025_nohaloes_full.nc', 'Vme', ''
+    sn_humi    = 'huss', 3, 'huss', .true.,  .false., 'yearly', 'weights_grid_jra_bilin_R12.nc', '', ''
+    sn_prec    = 'ptot', 3, 'ptot', .true.,  .false., 'yearly', 'weights_grid_jra_bilin_R12.nc', '', ''
+    sn_qlw     = 'rlds', 3, 'rlds', .false., .false., 'yearly', 'weights_grid_jra_bilin_R12.nc', '', ''
+    sn_qsr     = 'rsds', 3, 'rsds', .false., .false., 'yearly', 'weights_grid_jra_bilin_R12.nc', '', ''
+    sn_slp     = 'psl',  3, 'psl',  .true.,  .false., 'yearly', 'weights_grid_jra_bilin_R12.nc', '', ''
+    sn_snow    = 'prsn', 3, 'prsn', .true.,  .false., 'yearly', 'weights_grid_jra_bilin_R12.nc', '', ''
+    sn_tair    = 'tas',  3, 'tas',  .true.,  .false., 'yearly', 'weights_grid_jra_bilin_R12.nc', '', ''
+    sn_wndi    = 'uas',  3, 'uas',  .true.,  .false., 'yearly', 'weights_grid_jra_bicubic_R12.nc', 'Ume', ''
+    sn_wndj    = 'vas',  3, 'vas',  .true.,  .false., 'yearly', 'weights_grid_jra_bicubic_R12.nc', 'Vme', ''
 /
 
 &namtra_qsr
     sn_chl = 'merged_ESACCI_BIOMER4V1R1_CHL_REG05', -1, 'CHLA', .true.,
-             .true., 'yearly', 'weights_REG05_to_ORCA025_bilin.nc', '',
+             .true., 'yearly', 'weights_REG05_to_R12_bilin.nc', '',
              '',
     cn_dir = '/dssgfs01/scratch/acc/eORCA1/',
     ln_qsr_rgb = .true.,
@@ -98,15 +98,9 @@
     rn_rnf_max = 0.05,
 /
 
-&namisf
-    ln_isf = .true.,
-    ln_isfpar_mlt = .true.,
-    sn_isfpar_fwf = 'INPUT/eORCA025_runoff_GO6_icb.nc', -1, 'sofwfisf', .false.,
-                    .true., 'yearly', '', '', '',
-    sn_isfpar_zmax = 'INPUT/eORCA025_runoff_GO6_icb.nc', -12, 'sozisfmax', .false.,
-                     .true., 'yearly', '', '', '',
-    sn_isfpar_zmin = 'INPUT/eORCA025_runoff_GO6_icb.nc', -12, 'sozisfmin', .false.,
-                     .true., 'yearly', '', '', '',
+&namagrif
+    ln_init_chfrpar = 'CHANGEME',
+    ln_spc_dyn = .true.,
 /
 
 &namlbc
