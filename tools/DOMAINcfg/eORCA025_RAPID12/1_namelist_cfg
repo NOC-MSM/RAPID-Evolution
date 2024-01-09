@@ -42,9 +42,8 @@
 &namagrif      !  AGRIF zoom                                            ("key_agrif")
 !-----------------------------------------------------------------------
    ln_remove_closedseas = .true. ! Fill lakes inside zoom
-   ln_vert_remap = .false. ! volume conserving update 
+   ln_vert_remap = .true. ! volume conserving update 
    npt_connect   = 2
    npt_copy      = 4 
 /
-
 
