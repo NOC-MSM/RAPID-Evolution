@@ -1,1 +1,0 @@
-/dssgfs01/working/atb299/NEMO_cfgs/GOSI9/GOSI9_eORCA12_config/eORCA12_inputs/eORCA12_bathymetry_v2.4.nc

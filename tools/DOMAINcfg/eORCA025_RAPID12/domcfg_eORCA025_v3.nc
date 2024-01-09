@@ -1,1 +1,0 @@
-/dssgfs01/working/atb299/NEMO_cfgs/GOSI9_eORCA025_config/eORCA025_inputs/domcfg_eORCA025_v3.nc

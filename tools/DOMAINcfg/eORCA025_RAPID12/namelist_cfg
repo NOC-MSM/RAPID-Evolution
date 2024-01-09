@@ -2,7 +2,7 @@
 
 &namdom
     ln_read_cfg = .true.,
-    cn_domcfg = 'domcfg_eORCA025_v3.nc',
+    cn_domcfg = 'domcfg_eORCA025_v3_nohaloes.nc',
     ppglam0 = 999999.0,
     ppgphi0 = 999999.0,
     ppe1_deg = 999999.0,
@@ -29,7 +29,7 @@
     ni0glo = 1440,
     nj0glo = 1206,
     jpkglo = 75,
-    jperio = 6,
+    jperio = 4,
 /
 
 &namzgr
