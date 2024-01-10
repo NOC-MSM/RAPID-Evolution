@@ -1,0 +1,1 @@
+/dssgfs01/working/acc/FORCING/JRA/rlds_y1967.nc

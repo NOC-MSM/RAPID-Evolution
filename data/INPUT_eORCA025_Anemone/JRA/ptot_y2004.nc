@@ -1,0 +1,1 @@
+/dssgfs01/working/acc/FORCING/JRA/ptot_y2004.nc

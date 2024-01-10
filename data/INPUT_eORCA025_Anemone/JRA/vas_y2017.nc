@@ -1,0 +1,1 @@
+/dssgfs01/working/acc/FORCING/JRA/vas_y2017.nc
