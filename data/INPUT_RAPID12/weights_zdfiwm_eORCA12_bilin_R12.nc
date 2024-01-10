@@ -1,0 +1,1 @@
+/dssgfs01/working/atb299/NEMO_cfgs/RAPID_Evolution/weights_zdfiwm_eORCA12_bilin_R12.nc

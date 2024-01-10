@@ -1,0 +1,1 @@
+/dssgfs01/working/atb299/NEMO_cfgs/RAPID_Evolution/eORCA12_Goutorbe_weights_bilin_R12.nc
