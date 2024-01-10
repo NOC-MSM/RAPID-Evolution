@@ -24,7 +24,7 @@
 
 &namcfg
     ln_read_cfg = .true.,
-    cn_domcfg = './INPUT/domcfg.nc',
+    cn_domcfg = './INPUT/domain_cfg.nc',
     ln_closea    = .true.,
 /
 
