@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH --job-name=NPD_025
+#SBATCH --job-name=REvo
 #SBATCH --partition=compute
-#SBATCH --time=01:00:00
+#SBATCH --time=04:20:00
 #SBATCH --ntasks-per-core=1
 #SBATCH --ntasks-per-node=64
 #SBATCH --ntasks-per-socket=32
@@ -11,12 +11,12 @@
 # ========================================================
 # PARAMETERS TO SET
 # Restart frequency (<0 days, >0 hours)
-FREQRST=-1 #1461
+FREQRST=-5 #1461
 # Simulation length (<0 days, >0 hours)
-LENGTH=-1   # 16071 == end of 2001
+LENGTH=-70   # 16071 == end of 2001
 # Parent initial time step (0: infer from time.step)
 # IT000 != 0 -> auto-resubmission is switched OFF
-IT000=1
+PARENT_IT000=0
 # Name of this script (to resubmit)
 SCRIPTNAME=run_nemo1326_24x_v2.slurm
 # ========================================================
@@ -53,58 +53,68 @@ if [ "$LENGTH" -lt 0 ]; then
     LENGTH=$(( LENGTH * -24 ))
 fi
 
-# Get it000
-if [ "$IT000" -eq 0 ]; then
+# Get parent it000
+if [ "$PARENT_IT000" -eq 0 ]; then
     RESUBMIT=true
     if test -f "time.step"; then
-        IT000=$(get_timestep time.step)
+        PARENT_IT000=$(get_timestep time.step)
     fi
-    IT000=$(( IT000 + 1 ))
+    PARENT_IT000=$(( PARENT_IT000 + 1 ))
 else
     RESUBMIT=false
 fi
 
-# Get dt
-DT=$(get_var rn_Dt namelist_cfg)
-DT=${DT%.*}
+# Get parent dt
+PARENT_DT=$(get_var rn_Dt namelist_cfg)
+PARENT_DT=${PARENT_DT%.*}
 
 # Edit namelists
-if [ "$IT000" -gt 1 ]; then
+if [ "$PARENT_IT000" -gt 1 ]; then
     # Use restarts
-    edit_var ln_rstart ".true." ./namelist_cfg
+    edit_var ln_rstart ".true." ./*namelist_cfg
+    edit_var ln_init_chfrpar ".false." ./*_namelist_cfg
     edit_var ln_tsd_init ".false." ./namelist_cfg
 
-    # Set start
-    TSTEP=$((IT000 - 1))
-    IT000=$((TSTEP + 1))
-    edit_var "nn_it000" "$IT000" ./namelist_cfg
+    for NAMELIST in *namelist_cfg; do
+        # Set start
+        DT=$(get_var rn_Dt "$NAMELIST")
+        DT=${DT%.*}
+        RATIO=$(( PARENT_DT / DT ))
+        TSTEP=$(( (PARENT_IT000 - 1) * RATIO ))
+        IT000=$(( TSTEP + 1 / RATIO ))
+        edit_var "nn_it000" "$IT000" "$NAMELIST"
 
-    # Set restart prefixes
-    EXP=$(get_var cn_exp ./namelist_cfg)
-    OCERST_IN=${EXP}_$(printf "%08d" "$TSTEP")_restart
-    ICERST_IN=${OCERST_IN}_ice
-    edit_var cn_ocerst_in "'${OCERST_IN}'" ./namelist_cfg
-    edit_var cn_icerst_in "'${ICERST_IN}'" ./namelist_ice_cfg
+        # Set restart prefixes
+        EXP=$(get_var cn_exp "${NAMELIST}")
+        OCERST_IN=${EXP}_$(printf "%08d" "$TSTEP")_restart
+        NAMELIST_ICE=${NAMELIST//namelist_cfg/namelist_ice_cfg}
+        ICERST_IN=${OCERST_IN}_ice
+        edit_var cn_ocerst_in "'${OCERST_IN}'" "$NAMELIST"
+        edit_var cn_icerst_in "'${ICERST_IN}'" "$NAMELIST_ICE"
+    done
 
 else
     # Start from rest
-    edit_var ln_rstart ".false." ./namelist_cfg
+    edit_var ln_rstart ".false." ./*namelist_cfg
+    edit_var ln_init_chfrpar ".true." ./*_namelist_cfg
     edit_var ln_tsd_init ".true." ./namelist_cfg
-    edit_var cn_ocerst_in "'dummy'" ./namelist_cfg
-    edit_var cn_icerst_in "'dummy'" ./namelist_ice_cfg
-    edit_var nn_it000 "1" ./namelist_cfg
+    edit_var cn_ocerst_in "'dummy'" ./*namelist_cfg
+    edit_var cn_icerst_in "'dummy'" ./*namelist_ice_cfg
+    edit_var nn_it000 "1" ./*namelist_cfg
 fi
 
 # Edit nn_itend
-IT000=$(get_var nn_it000 ./namelist_cfg)
-DT=$(get_var rn_Dt ./namelist_cfg)
-DT=${DT%.*}
-ITEND=$(( IT000 - 1 + FREQRST * 60 * 60 / DT ))
-FINAL=$(( LENGTH * 60 * 60 / DT ))
-if [ "$ITEND" -ge "$FINAL" ]; then
-    ITEND=$FINAL
-fi
-edit_var nn_itend "$ITEND" ./namelist_cfg
+for NAMELIST in *namelist_cfg; do
+    IT000=$(get_var nn_it000 "$NAMELIST")
+    DT=$(get_var rn_Dt "$NAMELIST")
+    DT=${DT%.*}
+    ITEND=$(( IT000 - 1 + FREQRST * 60 * 60 / DT ))
+    FINAL=$(( LENGTH * 60 * 60 / DT ))
+    if [ "$ITEND" -ge "$FINAL" ]; then
+        ITEND=$FINAL
+    fi
+    edit_var nn_itend "$ITEND" "$NAMELIST"
+done
 
 # Submit next job
 if [ "$ITEND" -lt "$FINAL" ] && [ "$RESUBMIT" = true ]; then
@@ -112,7 +122,12 @@ if [ "$ITEND" -lt "$FINAL" ] && [ "$RESUBMIT" = true ]; then
 fi
 
 # Create directories
-mkdir -p {RESTARTS,OUTPUT}
+for SUFFIX in RESTARTS OUTPUT; do
+    mkdir -p $SUFFIX
+    for PREFIX in $(seq "$(find . -name "*_namelist_cfg" | wc -l)"); do
+        mkdir -p "${PREFIX}_"$SUFFIX
+    done
+done
 
 # Link nemo
 ln -fs ../BLD/bin/nemo.exe nemo
@@ -125,6 +140,7 @@ export OMP_NUM_THREADS=1
 export I_MPI_SHM=off
 unset I_MPI_PMI_LIBRARY 
 
+#mpiexec.hydra -print-rank-map -ppn 1 -np 24 $XIO_HOME/bin/xios_server.exe : -np 1326 ./nemo
 mpiexec.hydra -print-rank-map -ppn 1 -np 24 $XIO_HOME/bin/xios_server.exe : -np 1326 ./nemo
 
 # Move log files

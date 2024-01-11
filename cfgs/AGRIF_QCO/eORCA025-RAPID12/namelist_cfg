@@ -25,11 +25,11 @@
 &namcfg
     ln_read_cfg = .true.,
     cn_domcfg = './INPUT/domain_cfg.nc',
-    ln_closea    = .true.,
+    ln_closea    = .false.,
 /
 
 &namclo
-   ln_maskcs = .true.,
+   ln_maskcs = .false.,
 /
 
 &namtsd
@@ -228,7 +228,7 @@
 
 &namctl
     sn_cfctl%l_runstat = .true.,
-    ln_timing = .true.,
+    ln_timing = .false.,
     ln_diacfl = .true.,
 /
 
