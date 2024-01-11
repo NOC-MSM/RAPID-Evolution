@@ -13,10 +13,16 @@ The setup script downloads nemo, compiles tools and configurations. Setup defaul
 
 ### For Development 
 
-The global eORCA025 configuration is ready to run. All that is required is:
+The global eORCA025 and nested eORCA025-RAPID12 configurations are ready to run. All that is required is:
 
 ```shell
 cd nemo/cfgs/GLOBAL_QCO/eORCA025
+
+qsub run_nemo1326_24x_v2.slurm
+```
+
+```shell
+cd nemo/cfgs/AGRIF_QCO/eORCA025-RAPID12
 
 qsub run_nemo1326_24x_v2.slurm
 ```
