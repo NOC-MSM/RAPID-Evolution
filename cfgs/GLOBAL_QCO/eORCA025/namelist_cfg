@@ -14,6 +14,8 @@
     cn_ocerst_outdir = './RESTARTS',
     nn_stock = 70128,
     ln_mskland = .true.,
+    ln_rst_list = .false.
+    nn_stocklist = 0,0,0,0,0,0,0,0,0,0
 /
 
 &namdom
@@ -71,14 +73,14 @@
     sn_chl = 'merged_ESACCI_BIOMER4V1R1_CHL_REG05', -1, 'CHLA', .true.,
              .true., 'yearly', 'weights_REG05_to_ORCA025_bilin.nc', '',
              '',
-    cn_dir = '/dssgfs01/scratch/acc/eORCA1/',
+    cn_dir = './INPUT/',
     ln_qsr_rgb = .true.,
     nn_chldta = 1,
 /
 
 &namsbc_ssr
     nn_sssr = 2,
-    rn_deds = -166.67,
+    rn_deds = -33.3333333,
     cn_dir = './INPUT/',
     sn_sss = 'sss_1m_teos10_v4.2.nc', -1, 'salinity', .true., .true., 'yearly',
              '', '', '',
@@ -134,7 +136,6 @@
 &nambbl
     ln_trabbl = .true.,
     nn_bbl_adv  =  1,
-
 /
 
 &nameos
@@ -162,7 +163,6 @@
     nn_aei_ijk_t = 21,
     ln_ldfeiv_dia = .true.,
     nn_ldfeiv_shape = 2,
-
 /
 
 &namdyn_adv

@@ -1,9 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=WEIGHTS
 #SBATCH --time=01:00:00
-#SBATCH --account=n01-CLASS
-#SBATCH --partition=standard
-#SBATCH --qos=standard
+#SBATCH --partition=compute
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-core=1
 
@@ -14,15 +12,9 @@ USE_MULTI_PROG=false
 ln -fs ../{scripgrid,scrip,scripshape}.exe .
 
 # Set environment
-module swap PrgEnv-cray/8.0.0 PrgEnv-gnu/8.1.0
-module swap craype-network-ofi craype-network-ucx
-module swap cray-mpich cray-mpich-ucx
-module load cray-hdf5-parallel/1.12.0.7
-module load cray-netcdf-hdf5parallel/4.7.4.7
-module load libfabric
-module load nco
-module list
-export OMP_NUM_THREADS=1
+module load NEMO/prg-env
+unset I_MPI_PMI_LIBRARY
+
 
 # Set variables and create directories
 TMPDIR=TMP-$SLURM_JOB_ID
@@ -52,7 +44,7 @@ chmod u+x task.sh
 
 # Create namelists and task.conf
 NTASKS=0
-for INFILE in sss_1m geothermal_heating JRA/tas_y2021 JRA/vas_y2021; do
+for INFILE in sss_1m_teos10_v4.2 geothermal_heating_orca025ext_extrap40_v4.2 JRA/tas_y2021 JRA/vas_y2021; do
     BASENAME=$(basename $INFILE)
 
     # Set coordinate names

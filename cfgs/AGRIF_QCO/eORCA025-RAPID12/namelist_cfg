@@ -14,6 +14,8 @@
     cn_ocerst_outdir = './RESTARTS',
     nn_stock = 70128,
     ln_mskland = .true.,
+    ln_rst_list = .false.
+    nn_stocklist = 0,0,0,0,0,0,0,0,0,0
 /
 
 &namdom
@@ -78,7 +80,7 @@
 
 &namsbc_ssr
     nn_sssr = 2,
-    rn_deds = -166.67,
+    rn_deds = -33.3333333,
     cn_dir = './INPUT/',
     sn_sss = 'sss_1m_teos10_v4.2.nc', -1, 'salinity', .true., .true., 'yearly',
              '', '', '',
