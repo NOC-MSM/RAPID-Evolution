@@ -44,7 +44,7 @@ chmod u+x task.sh
 
 # Create namelists and task.conf
 NTASKS=0
-for INFILE in sss_1m_teos10_v4.2 geothermal_heating_orca025ext_extrap40_v4.2 JRA/tas_y2021 JRA/vas_y2021; do
+for INFILE in sss_1m_teos10_v4.2 geothermal_heating_orca025ext_extrap40_v4.2 JRA/tas_y2021 JRA/vas_y2021 merged_ESACCI_BIOMER4V1R1_CHL_REG05 zdfiwm_forcing_eORCA025; do
     BASENAME=$(basename $INFILE)
 
     # Set coordinate names
