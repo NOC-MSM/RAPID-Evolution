@@ -1,0 +1,22 @@
+/bin/bash
+
+## Script to prepare ancillary files for RAPID12 nest
+## Adam Blaker 16/11/2023
+
+
+ncks -O -d y,2114,2601 -d x,2246,3423 /dssgfs01/working/atb299/NEMO_cfgs/GOSI9/GOSI9_eORCA12_config/eORCA12_inputs/EN.4.1.1.f.analysis.g10.1995-2014.eORCA12.SSS.teos10.nc 1_INPUT/EN.4.1.1.f.analysis.g10.1995-2014.eORCA12.SSS.teos10_R12.nc
+ncks -O -d y,2114,2601 -d x,2246,3423 /dssgfs01/working/atb299/NEMO_cfgs/GOSI9/GOSI9_eORCA12_config/eORCA12_inputs/EN.4.1.1.f.analysis.g10.1995-2014.eORCA12.salinity.teos10.nc 1_INPUT/EN.4.1.1.f.analysis.g10.1995-2014.eORCA12.salinity.teos10_R12.nc
+ncks -O -d y,2114,2601 -d x,2246,3423 /dssgfs01/working/atb299/NEMO_cfgs/GOSI9/GOSI9_eORCA12_config/eORCA12_inputs/EN.4.1.1.f.analysis.g10.1995-2014.eORCA12.temperature.teos10.nc 1_INPUT/EN.4.1.1.f.analysis.g10.1995-2014.eORCA12.temperature.teos10_R12.nc
+ncks -O -d y,2114,2601 -d x,2246,3423 /dssgfs01/working/atb299/NEMO_cfgs/GOSI9/GOSI9_eORCA12_config/eORCA12_inputs/shlat2d_eORCA12_southps.nc 1_INPUT/shlat2d_eORCA12_southps_R12.nc
+ncks -O -d y,2114,2601 -d x,2246,3423 /dssgfs01/working/atb299/NEMO_cfgs/GOSI9/GOSI9_eORCA12_config/eORCA12_inputs/eORCA12_runoff_v2.4_GO6_ICB.nc 1_INPUT/eORCA12_runoff_v2.4_GO6_ICB_R12.nc
+ncks -O -d lat,2114,2601 -d lon,2246,3423 /dssgfs01/working/atb299/NEMO_cfgs/GOSI9/GOSI9_eORCA12_config/eORCA12_inputs/eORCA12_Goutorbe_weights_bilin.nc 1_INPUT/eORCA12_Goutorbe_weights_bilin_R12.nc
+
+# (note adjustment of lon values for v4.2 domain):
+ncks -O -d lat,2114,2601 -d lon,2245,3422 /dssgfs01/working/atb299/NEMO_cfgs/Casimir/weights_zdfiwm_eORCA12_bilin.nc 1_INPUT/weights_zdfiwm_eORCA12_bilin_R12.nc
+
+ncks -O -d lat,2114,2601 -d lon,2245,3422 /dssgfs01/working/acc/FORCING/JRA/weights_jra_eORCA12_bilin.nc 1_INPUT/weights_jra_eORCA12_bilin_R12.nc
+ncks -O -d lat,2114,2601 -d lon,2245,3422 /dssgfs01/working/acc/FORCING/JRA/weights_jra_eORCA12_bicubic.nc 1_INPUT/weights_jra_eORCA12_bicubic_R12.nc
+
+
+# Then need weights for:
+# merged_ESACCI_BIOMER4V1R1_CHL_REG05

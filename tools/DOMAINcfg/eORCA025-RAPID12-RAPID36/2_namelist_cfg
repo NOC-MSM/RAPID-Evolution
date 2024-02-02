@@ -1,0 +1,39 @@
+
+&namdom
+    cn_topo = 'eORCA_R36_bathymetry.nc',
+    cn_bath = 'Bathymetry',
+    nn_bathy = 2,
+    nn_interp = 2,
+    ppglam0 = 999999.0,
+    ppgphi0 = 999999.0,
+    ppe1_deg = 999999.0,
+    ppe2_deg = 999999.0,
+    ppe1_m = 999999.0,
+    ppe2_m = 999999.0,
+    ppsur = -3958.951371276829,
+    ppa0 = 103.9530096,
+    ppa1 = 2.415951269,
+    ppacr = 7.0,
+    ppkth = 15.3510137,
+!    rn_e3zps_min = 25.0,
+!    rn_e3zps_rat = 0.2,
+    rn_hmin = -8.,
+/
+
+&namcfg
+    ln_dept_mid = .true.,
+   cp_cfg = 'dumb'
+    jp_cfg = 025,
+   jpidta = 3086
+   jpjdta = 518
+    jpkdta = 75,
+   Ni0glo = 3086
+   Nj0glo = 518
+    jpkglo = 75,
+   jperio = 0
+/
+
+&namzgr
+    ln_zps = .true.,
+/
+
