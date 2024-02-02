@@ -1,0 +1,1 @@
+../../../data/INPUT_RAPID36/1_eORCA025-RAPID12-RAPID36_domain_cfg.nc
