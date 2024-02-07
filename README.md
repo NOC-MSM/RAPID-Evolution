@@ -27,6 +27,12 @@ cd nemo/cfgs/AGRIF_QCO/eORCA025-RAPID12
 qsub run_nemo1326_24x_v2.slurm
 ```
 
+```shell
+cd nemo/cfgs/AGRIF_QCO/eORCA025-RAPID12-RAPID36
+
+qsub run_nemo1326_24x_v2.slurm
+```
+
 There are a few variables to set in the runscript. For example, the following variables will generate a 2-hour simulation split in 1-hour jobs.
 ```bash
 # ========================================================
@@ -78,11 +84,18 @@ Resolution:
 - Horizontal: 1/4°
 - Vertical: 75 levels
 
-### Global eORCA025 - RAPID12 (in progress)
+### Global eORCA025-RAPID12 (in progress)
 Resolution:
 - Horizontal: 1/4°
 - Vertical: 75 levels
-- 1/12° AGRIF nest extending over 19°N-31°N
+- 1/12° AGRIF nest extending over 6°N-42°N
+
+### Global eORCA025-RAPID12-RAPID36 (in progress)
+Resolution:
+- Horizontal: 1/4°
+- Vertical: 75 levels
+- 1/12° AGRIF nest extending over 6°N-42°N
+- 1/36° AGRIF nest extending over 19°N-31°N
 
 
 ### Global eORCA12
@@ -90,13 +103,13 @@ Resolution:
 - Horizontal: 1/12°
 - Vertical: 75 levels
 
-### Global eORCA12 - RAPID36 (planned)
+### Global eORCA12-RAPID36 (planned)
 Resolution:
 - Horizontal: 1/12°
 - Vertical: 75 levels
 - 1/36° AGRIF nest extending over 19°N-31°N
 
-### Global eORCA12 - RAPID36 - GSRIDGE36 (planned)
+### Global eORCA12-RAPID36-GSRIDGE36 (planned)
 Resolution:
 - Horizontal: 1/12°
 - Vertical: 75 levels
