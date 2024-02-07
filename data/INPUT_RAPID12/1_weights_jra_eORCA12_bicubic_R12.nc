@@ -1,1 +1,0 @@
-weights_jra_eORCA12_bicubic_R12.nc

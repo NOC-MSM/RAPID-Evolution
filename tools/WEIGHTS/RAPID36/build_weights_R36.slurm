@@ -1,0 +1,1 @@
+../../../scripts/build_weights_R36.slurm

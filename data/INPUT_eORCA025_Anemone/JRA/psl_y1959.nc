@@ -1,1 +1,1 @@
-/dssgfs01/working/acc/FORCING/JRA/psl_y1959.nc
+/dssgfs01/scratch/npd/forcing/JRA55/psl_y1959.nc

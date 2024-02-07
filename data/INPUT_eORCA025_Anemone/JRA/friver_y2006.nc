@@ -1,1 +1,1 @@
-/dssgfs01/working/acc/FORCING/JRA/friver_y2006.nc
+/dssgfs01/scratch/npd/forcing/JRA55/friver_y2006.nc

@@ -1,1 +1,0 @@
-/dssgfs01/working/atb299/NEMO_cfgs/RAPID_Evolution/shlat2d_eORCA12_southps_R12.nc

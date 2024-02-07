@@ -1,0 +1,1 @@
+/dssgfs01/working/atb299/NEMO_cfgs/RAPID_Evolution/weights_Goutorbe_ghflux_R36.nc

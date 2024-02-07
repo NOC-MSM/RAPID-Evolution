@@ -1,1 +1,1 @@
-/dssgfs01/working/acc/FORCING/JRA/huss_y1991.nc
+/dssgfs01/scratch/npd/forcing/JRA55/huss_y1991.nc

@@ -1,1 +1,0 @@
-/dssgfs01/working/acc/FORCING/JRA/weights_jra_eORCA12_withhalos_bilin.nc

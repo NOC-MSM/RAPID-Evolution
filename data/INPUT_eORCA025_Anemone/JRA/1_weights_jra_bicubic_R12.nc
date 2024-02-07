@@ -1,0 +1,1 @@
+weights_jra_bicubic_R12.nc

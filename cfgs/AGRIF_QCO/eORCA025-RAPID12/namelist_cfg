@@ -26,7 +26,7 @@
 
 &namcfg
     ln_read_cfg = .true.,
-    cn_domcfg = './INPUT/domain_cfg.nc',
+    cn_domcfg = './INPUT/eORCA025-RAPID12_domain_cfg.nc',
     ln_closea    = .false.,
 /
 

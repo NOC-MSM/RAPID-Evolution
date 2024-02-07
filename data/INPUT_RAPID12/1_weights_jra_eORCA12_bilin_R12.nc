@@ -1,1 +1,0 @@
-weights_jra_eORCA12_bilin_R12.nc

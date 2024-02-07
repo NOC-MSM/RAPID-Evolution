@@ -1,1 +1,1 @@
-/dssgfs01/working/acc/FORCING/JRA/tas_y1996.nc
+/dssgfs01/scratch/npd/forcing/JRA55/tas_y1996.nc

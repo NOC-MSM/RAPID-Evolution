@@ -117,8 +117,10 @@ for DIR in "${WD}"/tools/DOMAINcfg/*/; do
     DIR=$(basename "$DIR")
     echo "$DIR"
     cd "$NEMODIR"/tools/DOMAINcfg/"$DIR"/ || exit
-    if [ "$DIR" == "RAPID12" ] ; then
-        DOMAIN_JOBID=$(sbatch --parsable build_domains.slurm) || exit
+    if [ "$DIR" == "eORCA025-RAPID12" ] ; then
+        DOMAIN_JOBID12=$(sbatch --parsable build_domains.slurm) || exit
+    elif [ "$DIR" == "eORCA025-RAPID12-RAPID36" ] ; then
+        DOMAIN_JOBID36=$(sbatch --parsable build_domains.slurm) || exit
     else
         sbatch build_domains.slurm || exit
     fi
@@ -133,7 +135,11 @@ for DIR in "${WD}"/tools/WEIGHTS/*/; do
     DIR=$(basename "$DIR")
     echo "$DIR"
     cd "$NEMODIR"/tools/WEIGHTS/"$DIR"/ || exit
-    sbatch --dependency=afterok:"$DOMAIN_JOBID" build_weights.slurm || exit
+    if [ -e build_weights_R36.slurm ] ; then
+        sbatch --dependency=afterok:"$DOMAIN_JOBID36" build_weights_R36.slurm || exit
+    else
+        sbatch --dependency=afterok:"$DOMAIN_JOBID12" build_weights.slurm || exit
+    fi
 done
 
 

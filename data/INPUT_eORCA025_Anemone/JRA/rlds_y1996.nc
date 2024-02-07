@@ -1,1 +1,1 @@
-/dssgfs01/working/acc/FORCING/JRA/rlds_y1996.nc
+/dssgfs01/scratch/npd/forcing/JRA55/rlds_y1996.nc

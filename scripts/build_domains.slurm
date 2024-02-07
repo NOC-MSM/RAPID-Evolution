@@ -1,20 +1,13 @@
 #!/bin/bash
 #SBATCH --job-name=DOMAINcfg
-#SBATCH --time=00:20:00
-#SBATCH --account=n01-CLASS
-#SBATCH --partition=standard
-#SBATCH --qos=short
+#SBATCH --time=01:00:00
+#SBATCH --partition=compute
 #SBATCH --nodes=1
-#SBATCH --ntasks=128
+#SBATCH --ntasks-per-core=1
 
 # Set environment
-module swap PrgEnv-cray/8.0.0 PrgEnv-gnu/8.1.0
-module swap craype-network-ofi craype-network-ucx
-module swap cray-mpich cray-mpich-ucx
-module load cray-hdf5-parallel/1.12.0.7
-module load cray-netcdf-hdf5parallel/4.7.4.7
-module load libfabric
-module list
+module load NEMO/prg-env
+unset I_MPI_PMI_LIBRARY
 export OMP_NUM_THREADS=1
 
 # Link exe

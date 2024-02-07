@@ -1,1 +1,0 @@
-/dssgfs01/working/acc/FORCING/JRA/weights_grid_jra_bicubic_e025.nc

@@ -1,1 +1,1 @@
-/dssgfs01/working/acc/FORCING/JRA/ptot_y1964.nc
+/dssgfs01/scratch/npd/forcing/JRA55/ptot_y1964.nc
