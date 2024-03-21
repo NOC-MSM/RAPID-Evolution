@@ -1,0 +1,1 @@
+/work/n01/shared/nemo/FORCING/JRA/weights_grid_jra_bilin_e025_nohaloes_full.nc

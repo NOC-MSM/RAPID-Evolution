@@ -1,0 +1,1 @@
+/work/n01/shared/nemo/FORCING/JRA/weights_jra_eORCA12_bicubic.nc
