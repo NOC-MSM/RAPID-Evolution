@@ -93,6 +93,10 @@ ln -sfT mkslurm_NPD_${SYSTEM} scripts/python/mkslurm_NPD
 
 ln -sfT INPUT_eORCA025_${SYSTEM} data/INPUT_eORCA025
 ln -sfT INPUT_eORCA12_${SYSTEM} data/INPUT_eORCA12
+ln -sfT INPUT_RAPID12_${SYSTEM} data/INPUT_RAPID12
+ln -sfT INPUT_RAPID12_${SYSTEM} data/INPUT_RAPID12
+ln -sfT INPUT_RAPID36_${SYSTEM} data/INPUT_RAPID36
+ln -sfT INPUT_RAPID36_${SYSTEM} data/INPUT_RAPID36
 
 
 # Copy
@@ -101,6 +105,9 @@ cp -r "${WD}"/{arch,cfgs,data,ext,scripts,tools} "$NEMODIR"/. || exit
 
 cp -r "${WD}"/scripts/TIDY "$NEMODIR"/cfgs/GLOBAL_QCO/eORCA025/.
 cp -r "${WD}"/scripts/TIDY "$NEMODIR"/cfgs/GLOBAL_QCO/eORCA12/.
+
+cp -r "${WD}"/scripts/TIDY "$NEMODIR"/cfgs/AGRIF_QCO/eORCA025-RAPID12/.
+cp -r "${WD}"/scripts/TIDY "$NEMODIR"/cfgs/AGRIF_QCO/eORCA025-RAPID12-RAPID36/.
 
 ###########################################
 # TOOLS
