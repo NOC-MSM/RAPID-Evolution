@@ -31,7 +31,7 @@ set -o pipefail
   SCRIPTNAME=run_het_nemo1326_96x_27n_a2_v2.slurm
 #
 echo "PWD = " $PWD
-export NEMO_EXP_DIR="/work/n01/n01/atb299/RAPID-Evo/20240321/RAPID-Evolution/nemo/cfgs/AGRIF_QCO/eORCA025-RAPID12-RAPID36"
+export NEMO_EXP_DIR=$PWD
 echo "NEMO_EXP_DIR = " $NEMO_EXP_DIR
 export XIO_HOME="/work/n01/shared/nemo/XIOS2_Cray"
 # Use of nn_stocklist to trigger end-of-year restarts regardless of leap- or non-leap-
