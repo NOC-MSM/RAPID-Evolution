@@ -18,19 +18,20 @@ The global eORCA025 and nested eORCA025-RAPID12 configurations are ready to run.
 ```shell
 cd nemo/cfgs/GLOBAL_QCO/eORCA025
 
-sbatch run_nemo1326_24x_v2.slurm
+sbatch run_nemo1326_24x_v2.slurm                      (Anemone)
 ```
 
 ```shell
 cd nemo/cfgs/AGRIF_QCO/eORCA025-RAPID12
 
-sbatch run_nemo1326_24x_v2.slurm
+sbatch run_nemo1326_24x_v2.slurm                      (Anemone)
 ```
 
 ```shell
 cd nemo/cfgs/AGRIF_QCO/eORCA025-RAPID12-RAPID36
 
-sbatch run_nemo1326_24x_v2.slurm
+sbatch run_nemo1326_24x_v2.slurm                      (Anemone)
+sbatch run_het_nemo1326_96x_27n_a2_v2.slurm           (Archer2)
 ```
 
 There are a few variables to set in the runscript. For example, the following variables will generate a 2-hour simulation split in 1-hour jobs.
