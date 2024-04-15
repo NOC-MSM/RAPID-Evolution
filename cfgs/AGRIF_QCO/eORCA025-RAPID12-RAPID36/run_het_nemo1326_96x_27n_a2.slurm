@@ -12,6 +12,9 @@ set -u
 set -e
 set -o pipefail
 
+module load cray-mpich/8.1.23 
+module load cray-hdf5-parallel/1.12.2.1 
+module load cray-netcdf-hdf5parallel/4.9.0.1
 
 # ========================================================
 # PARAMETERS TO SET
@@ -21,14 +24,14 @@ set -o pipefail
   FREQRST=1
 # job-step initial time step (0: infer from time.step)
 # PARENT_IT000 != 0 -> auto-resubmission is switched OFF
-  PARENT_IT000=1
+  PARENT_IT000=0
 #
 # Simulation original starting time step (unchanged for LENGTHxTIME_UNITS)
   ITBEGIN=1
 # Simulation length (in TIME_UNITS)
-  LENGTH=1
+  LENGTH=3
 # Name of this script (to resubmit)
-  SCRIPTNAME=run_het_nemo1326_96x_27n_a2_v2.slurm
+  SCRIPTNAME=run_het_nemo1326_96x_27n_a2.slurm
 #
 echo "PWD = " $PWD
 export NEMO_EXP_DIR=$PWD
@@ -176,7 +179,8 @@ for NAMELIST in *namelist_cfg; do
     DT=${DT%.*}
     RATIO=$(( PARENT_DT / DT ))
     TSTEP=$(( (PARENT_IT000 - 1) * RATIO ))
-    IT000=$(( TSTEP + 1 / RATIO ))
+    IT000=$(( TSTEP / RATIO + 1 ))
+
     # Edit nn_itend and (possibly) ln_rst_list and nn_stocklist
     # Deal with frequency and length units (convert to hours in all cases)
     # TIME_UNITS=0 # 0=years ; 1=days ; 2=hours ; no conversion required for last case.
@@ -206,7 +210,7 @@ for NAMELIST in *namelist_cfg; do
         # are always written even when FREQRST > 1
         #
 
-        NEXT_STOCK="$(( IT000 - 1 + YR_LEN * 24 * 60 * 60 / DT * RATIO ))"
+        NEXT_STOCK="$(( IT000 - 1 + YR_LEN * 24 * 60 * 60 / DT ))"
         STOCK_LIST=$NEXT_STOCK
         LT=$(( FREQRST - 1 ))
         if [ "$LT" -gt 0 ] ; then
@@ -214,7 +218,7 @@ for NAMELIST in *namelist_cfg; do
            do
             START_YR=$(( START_YR + 1 ))
             YL=$( greg_length $START_YR )
-            NEXT_STOCK="$(( NEXT_STOCK + YL * 24 * 60 * 60 / DT * RATIO ))"
+            NEXT_STOCK="$(( NEXT_STOCK + YL * 24 * 60 * 60 / DT ))"
             # stocklist is limited to length 10
             if [ "$y" -lt 10 ] ; then
               STOCK_LIST="${STOCK_LIST},${NEXT_STOCK}"
@@ -225,16 +229,16 @@ for NAMELIST in *namelist_cfg; do
         edit_var nn_stocklist "$STOCK_LIST" "$NAMELIST"
         edit_var ln_rst_list ".true." "$NAMELIST"
     elif [ "$TIME_UNITS" -eq 1 ]; then
-        ITEND=$(( IT000 - 1 + FREQRST * 24 * 60 * 60 / DT * RATIO ))
+        ITEND=$(( IT000 - 1 + FREQRST * 24 * 60 * 60 / DT ))
         EXP_LENGTH=$(( LENGTH * 24 ))
         edit_var ln_rst_list ".false." "$NAMELIST"
     elif [ "$TIME_UNITS" -eq 2 ]; then
-        ITEND=$(( IT000 - 1 + FREQRST * 60 * 60 / DT * RATIO ))
+        ITEND=$(( IT000 - 1 + FREQRST * 60 * 60 / DT ))
         EXP_LENGTH=$LENGTH
         edit_var ln_rst_list ".false." "$NAMELIST"
     fi
     
-    FINAL=$(( ITBEGIN - 1 + EXP_LENGTH * 60 * 60 / DT * RATIO ))
+    FINAL=$(( ITBEGIN - 1 + EXP_LENGTH * 60 * 60 / DT ))
     echo "ITEND = "$ITEND
     echo "FINAL = "$FINAL
     if [ "$ITEND" -ge "$FINAL" ]; then
@@ -251,10 +255,6 @@ fi
 # Create directories
 mkdir -p {RESTARTS,OUTPUT}
 
-
-module load cray-mpich/8.1.23 
-module load cray-hdf5-parallel/1.12.2.1 
-module load cray-netcdf-hdf5parallel/4.9.0.1
 
 export OMP_NUM_THREADS="1"
 export I_MPI_SHM="off"
@@ -285,3 +285,46 @@ srun --mem-bind=local \
 --het-group=0 --nodes=6 --ntasks=96 --ntasks-per-node=16 --cpu-bind=v,mask_cpu:0x1,0x100,0x10000,0x1000000,0x100000000,0x10000000000,0x1000000000000,0x100000000000000,0x10000000000000000,0x1000000000000000000,0x100000000000000000000,0x10000000000000000000000,0x1000000000000000000000000,0x100000000000000000000000000,0x10000000000000000000000000000,0x1000000000000000000000000000000 ./myscript_wrapper.sh \
 : --het-group=1 --nodes=20 --ntasks=1280 --ntasks-per-node=64 --cpu-bind=v,mask_cpu:0x1,0x4,0x10,0x40,0x100,0x400,0x1000,0x4000,0x10000,0x40000,0x100000,0x400000,0x1000000,0x4000000,0x10000000,0x40000000,0x100000000,0x400000000,0x1000000000,0x4000000000,0x10000000000,0x40000000000,0x100000000000,0x400000000000,0x1000000000000,0x4000000000000,0x10000000000000,0x40000000000000,0x100000000000000,0x400000000000000,0x1000000000000000,0x4000000000000000,0x10000000000000000,0x40000000000000000,0x100000000000000000,0x400000000000000000,0x1000000000000000000,0x4000000000000000000,0x10000000000000000000,0x40000000000000000000,0x100000000000000000000,0x400000000000000000000,0x1000000000000000000000,0x4000000000000000000000,0x10000000000000000000000,0x40000000000000000000000,0x100000000000000000000000,0x400000000000000000000000,0x1000000000000000000000000,0x4000000000000000000000000,0x10000000000000000000000000,0x40000000000000000000000000,0x100000000000000000000000000,0x400000000000000000000000000,0x1000000000000000000000000000,0x4000000000000000000000000000,0x10000000000000000000000000000,0x40000000000000000000000000000,0x100000000000000000000000000000,0x400000000000000000000000000000,0x1000000000000000000000000000000,0x4000000000000000000000000000000,0x10000000000000000000000000000000,0x40000000000000000000000000000000 ./myscript_wrapper.sh \
 : --het-group=2 --nodes=1 --ntasks=46 --ntasks-per-node=46 --cpu-bind=v,mask_cpu:0x1,0x4,0x10,0x40,0x100,0x400,0x1000,0x4000,0x10000,0x40000,0x100000,0x400000,0x1000000,0x4000000,0x10000000,0x40000000,0x100000000,0x400000000,0x1000000000,0x4000000000,0x10000000000,0x40000000000,0x100000000000,0x400000000000,0x1000000000000,0x4000000000000,0x10000000000000,0x40000000000000,0x100000000000000,0x400000000000000,0x1000000000000000,0x4000000000000000,0x10000000000000000,0x40000000000000000,0x100000000000000000,0x400000000000000000,0x1000000000000000000,0x4000000000000000000,0x10000000000000000000,0x40000000000000000000,0x100000000000000000000,0x400000000000000000000,0x1000000000000000000000,0x4000000000000000000000,0x10000000000000000000000,0x40000000000000000000000 ./myscript_wrapper.sh
+
+wait
+
+# Print stats
+sacct -j "$SLURM_JOB_ID" --units=G --format=JobID,JobName,NNodes,Elapsed,AveRSS,MaxRSS,MaxRSSNode,MaxRSSTask
+
+# Move log files
+mkdir -p LOGS/"$SLURM_JOB_ID"
+mv {*.dat,*output*,*.stat*,communication_report.txt} LOGS/"$SLURM_JOB_ID"
+
+# Check time.step and ocean.output
+for NAMELIST in *namelist_cfg; do
+
+    # Check that ocean.output exist
+    OUTNAME=${NAMELIST//namelist_cfg/ocean.output}
+    OUTNAME=LOGS/"$SLURM_JOB_ID"/"$OUTNAME"
+    if [ ! -f  "$OUTNAME" ]; then
+        echo "E R R O R : $OUTNAME is missing."
+        exit 1
+    fi
+
+    # Check for errors
+    ERROR=$(grep "E R R O R" "$OUTNAME" | wc -l)
+    if [ "$ERROR" -gt 0 ]; then
+        echo "E R R O R : errors found in $OUTNAME"
+        exit 1
+    fi
+
+    # Check that time.step exist
+    TIMENAME=${NAMELIST//namelist_cfg/time.step}
+    if [ ! -f  "$TIMENAME" ]; then
+        echo "E R R O R : $TIMENAME is missing."
+        exit 1
+    fi
+
+    # Check nn_itend vs time.step
+    EXPECTED=$(get_var nn_itend "$NAMELIST")
+    ACTUAL=$(get_timestep "$TIMENAME")
+    if [ "$ACTUAL" -lt "$EXPECTED" ]; then
+        echo "E R R O R : $TIMENAME is $ACTUAL (expecting $EXPECTED)"
+        exit 1
+    fi
+done
