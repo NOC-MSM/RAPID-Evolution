@@ -1,0 +1,1 @@
+/dssgfs01/working/atb299/NEMO_cfgs/RAPID_Evolution/1_eORCA12_bathymetry_v2.4_cutout_exactxy.nc
