@@ -47,7 +47,7 @@
     nn_ice = 0,
     ln_traqsr = .true.,
     ln_ssr = .true.,
-    ln_rnf = .false., !! TEMPORARY
+    ln_rnf = .true.,
     nn_fwb = 1,
 /
 
@@ -90,9 +90,8 @@
              'yearly', '', '', '',
     sn_cnf = 'eORCA12_runoff_v2.4_GO6_ICB_R36.nc', 0, 'socoefr', .false., .true.,
              'yearly', '', '', '',
-    sn_t_rnf='eORCA12_runoff_v2.4_GO6_ICB_R36.nc',-12,'icbrnftemper',.false.,.true.,'yearly','','',''
     ln_rnf_mouth = .true.,
-    ln_rnf_tem   = .true.,
+    ln_rnf_tem   = .false.,
     rn_hrnf = 10.0,
     rn_avt_rnf = 0.002,
     rn_rnf_max = 0.05,

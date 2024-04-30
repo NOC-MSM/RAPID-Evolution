@@ -47,7 +47,7 @@
     nn_ice = 0,
     ln_traqsr = .true.,
     ln_ssr = .true.,
-    ln_rnf = .false., !! TEMPORARY
+    ln_rnf = .true.,
     nn_fwb = 1,
 /
 
@@ -86,7 +86,7 @@
 
 &namsbc_rnf
     cn_dir = './1_INPUT/',
-    sn_rnf = 'eORCA12_runoff_v2.4_GO6_ICB_R12.nc', -1, 'sornficb', .true., .true.,
+    sn_rnf = 'eORCA12_runoff_v2.4_GO6_ICB_R12.nc', -1, 'sorunoff', .true., .true.,
              'yearly', '', '', '',
     sn_cnf = 'eORCA12_runoff_v2.4_GO6_ICB_R12.nc', 0, 'socoefr', .false., .true.,
              'yearly', '', '', '',
