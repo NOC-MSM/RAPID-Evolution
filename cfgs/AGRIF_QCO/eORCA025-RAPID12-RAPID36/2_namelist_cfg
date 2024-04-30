@@ -86,7 +86,7 @@
 
 &namsbc_rnf
     cn_dir = './2_INPUT/',
-    sn_rnf = 'eORCA12_runoff_v2.4_GO6_ICB_R36.nc', -1, 'sornficb', .true., .true.,
+    sn_rnf = 'eORCA12_runoff_v2.4_GO6_ICB_R36.nc', -1, 'sorunoff', .true., .true.,
              'yearly', '', '', '',
     sn_cnf = 'eORCA12_runoff_v2.4_GO6_ICB_R36.nc', 0, 'socoefr', .false., .true.,
              'yearly', '', '', '',
@@ -103,8 +103,6 @@
 /
 
 &namlbc
-    cn_shlat2d_file='shlat2d.nc',
-    cn_shlat2d_var='shlat2d',
     ln_shlat2d=.false.,
     rn_shlat = 0.0,
 /
