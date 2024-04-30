@@ -68,12 +68,12 @@
 /
 
 &namtra_qsr
-    sn_chl = 'merged_ESACCI_BIOMER4V1R1_CHL_REG05', -1, 'CHLA', .true.,
-             .true., 'yearly', 'weights_REG05_to_R36_bilin.nc', '',
+    sn_chl = 'merged_ESACCI_BIOMER4V1R1_CHL_REG05.nc', -1, 'CHLA', .true.,
+             .true., 'yearly', 'weights_merged_ESACCI_BIOMER4V1R1_CHL_REG05_R12.nc', '',
              '',
     cn_dir = './2_INPUT/',
     ln_qsr_rgb = .true.,
-    nn_chldta = 0,  !! TEMPORARY
+    nn_chldta = 1,
 /
 
 &namsbc_ssr
