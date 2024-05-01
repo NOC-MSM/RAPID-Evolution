@@ -69,7 +69,7 @@
 
 &namtra_qsr
     sn_chl = 'merged_ESACCI_BIOMER4V1R1_CHL_REG05.nc', -1, 'CHLA', .true.,
-             .true., 'yearly', 'weights_merged_ESACCI_BIOMER4V1R1_CHL_REG05_R12.nc', '',
+             .true., 'yearly', 'weights_merged_ESACCI_BIOMER4V1R1_CHL_REG05_R36.nc', '',
              '',
     cn_dir = './2_INPUT/',
     ln_qsr_rgb = .true.,
