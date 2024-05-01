@@ -1,16 +1,10 @@
 #!/bin/bash
 #SBATCH --job-name=NPD_025
-#SBATCH --output=./job.out
-#SBATCH --error=./job.err
 #SBATCH --partition=standard
 #SBATCH --qos=short
 #SBATCH --time=00:20:00
 #SBATCH --account=n01-CLASS
 #SBATCH --nodes=27
-
-set -u
-set -e
-set -o pipefail
 
 module load cray-mpich/8.1.23 
 module load cray-hdf5-parallel/1.12.2.1 
@@ -293,7 +287,7 @@ sacct -j "$SLURM_JOB_ID" --units=G --format=JobID,JobName,NNodes,Elapsed,AveRSS,
 
 # Move log files
 mkdir -p LOGS/"$SLURM_JOB_ID"
-mv {*.dat,*output*,*.stat*,communication_report.txt} LOGS/"$SLURM_JOB_ID"
+mv {*.dat,*output*,*.stat*} LOGS/"$SLURM_JOB_ID"
 
 # Check time.step and ocean.output
 for NAMELIST in *namelist_cfg; do
@@ -328,3 +322,5 @@ for NAMELIST in *namelist_cfg; do
         exit 1
     fi
 done
+
+exit 0

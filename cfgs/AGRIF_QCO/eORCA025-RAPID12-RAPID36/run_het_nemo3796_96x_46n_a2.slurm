@@ -1,34 +1,31 @@
 #!/bin/bash
 #SBATCH --job-name=NPD_025
-#SBATCH --output=./job.out
-#SBATCH --error=./job.err
 #SBATCH --partition=standard
 #SBATCH --qos=standard
-#SBATCH --time=00:20:00
+#SBATCH --time=20:20:00
 #SBATCH --account=n01-CLASS
 #SBATCH --nodes=46
 
-set -u
-set -e
-set -o pipefail
-
+module load cray-mpich/8.1.23 
+module load cray-hdf5-parallel/1.12.2.1 
+module load cray-netcdf-hdf5parallel/4.9.0.1
 
 # ========================================================
 # PARAMETERS TO SET
 # time units used here for restart frequency and simulaion length
-  TIME_UNITS=1 # 0=years ; 1=days ; 2=hours
+  TIME_UNITS=0 # 0=years ; 1=days ; 2=hours
 # Restart/resubmission frequency (in TIME_UNITS)
   FREQRST=1
 # job-step initial time step (0: infer from time.step)
 # PARENT_IT000 != 0 -> auto-resubmission is switched OFF
-  PARENT_IT000=1
+  PARENT_IT000=0
 #
 # Simulation original starting time step (unchanged for LENGTHxTIME_UNITS)
   ITBEGIN=1
 # Simulation length (in TIME_UNITS)
-  LENGTH=1
+  LENGTH=3
 # Name of this script (to resubmit)
-  SCRIPTNAME=run_het_nemo1326_96x_27n_a2_v2.slurm
+  SCRIPTNAME=run_het_nemo3796_96x_46n_a2.slurm
 #
 echo "PWD = " $PWD
 export NEMO_EXP_DIR=$PWD
@@ -252,11 +249,6 @@ fi
 # Create directories
 mkdir -p {RESTARTS,OUTPUT}
 
-
-module load cray-mpich/8.1.23 
-module load cray-hdf5-parallel/1.12.2.1 
-module load cray-netcdf-hdf5parallel/4.9.0.1
-
 export OMP_NUM_THREADS="1"
 export I_MPI_SHM="off"
 export XIOS_PROCESSES="96"
@@ -296,7 +288,7 @@ sacct -j "$SLURM_JOB_ID" --units=G --format=JobID,JobName,NNodes,Elapsed,AveRSS,
 
 # Move log files
 mkdir -p LOGS/"$SLURM_JOB_ID"
-mv {*.dat,*output*,*.stat*,communication_report.txt} LOGS/"$SLURM_JOB_ID"
+mv {*.dat,*output*,*.stat*} LOGS/"$SLURM_JOB_ID"
 
 # Check time.step and ocean.output
 for NAMELIST in *namelist_cfg; do
@@ -331,3 +323,5 @@ for NAMELIST in *namelist_cfg; do
         exit 1
     fi
 done
+
+exit 0
