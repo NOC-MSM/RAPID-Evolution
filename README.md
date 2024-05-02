@@ -18,19 +18,20 @@ The global eORCA025 and nested eORCA025-RAPID12 configurations are ready to run.
 ```shell
 cd nemo/cfgs/GLOBAL_QCO/eORCA025
 
-sbatch run_nemo1326_24x_v2.slurm
+sbatch run_nemo1326_24x_v2.slurm                      (Anemone)
 ```
 
 ```shell
 cd nemo/cfgs/AGRIF_QCO/eORCA025-RAPID12
 
-sbatch run_nemo1326_24x_v2.slurm
+sbatch run_nemo1326_24x_v2.slurm                      (Anemone)
 ```
 
 ```shell
 cd nemo/cfgs/AGRIF_QCO/eORCA025-RAPID12-RAPID36
 
-sbatch run_nemo1326_24x_v2.slurm
+sbatch run_nemo1326_24x_v2.slurm                      (Anemone)
+sbatch run_het_nemo1326_96x_27n_a2.slurm              (Archer2)
 ```
 
 There are a few variables to set in the runscript. For example, the following variables will generate a 2-hour simulation split in 1-hour jobs.
@@ -54,27 +55,21 @@ We will start by implementing a 1/12° nest in eORCA025. This will enable faster
 
 ### Submitting on Archer2 
 
-Simulations of eORCA12 with or without nests are best done on Archer2. 
+Production Simulations larger than eORCA025 are best done on Archer2. 
 
 Change directory to the NEMO experiment directory:
 ```shell
-cd nemo/cfgs/GLOBAL_QCO/eORCA12
+cd nemo/cfgs/GLOBAL_QCO/eORCA025-RAPID12-RAPID36
 ```
-and create a runscript:
 
-Example `mkslurm_NPD` settings for eORCA12 production runs on Archer2:
+For the eORCA025-RAPID12-RAPID36 configuration there are currently two tested runscripts:
+
 ```shell
-../../../scripts/python/mkslurm_NPD -S 48 -s 16 -m 1 -C 5504 -g 0 -a n01-CLASS -j eORCA12 -t 1-00:00:00 --gnu > run_nemo5504_48X.slurm
-
-../../../scripts/python/mkslurm_NPD -S 48 -s 16 -m 1 -C 8238 -g 0 -a n01-CLASS -j eORCA12 -t 0-00:10:00 --gnu > run_nemo8238_48X.slurm
-
-../../../scripts/python/mkslurm_NPD -S 48 -s 16 -m 1 -C 11168 -g 0 -a n01-CLASS -j eORCA12 -t 0-00:10:00 --gnu > run_nemo11168_48X.slurm
+sbatch run_het_nemo1326_96x_27n_a2.slurm              (Archer2)
+sbatch run_het_nemo3796_96x_46n_a2.slurm              (Archer2)
 ```
+On 46 nodes eORCA025-RAPID12-RAPID36 completes around 3 SYPD, excluding queueing time.
 
-Finally:
-```shell
-sbatch run_nemo[...].slurm
-```
 
 
 ## Configurations:
@@ -84,13 +79,13 @@ Resolution:
 - Horizontal: 1/4°
 - Vertical: 75 levels
 
-### Global eORCA025-RAPID12 (in progress)
+### Global eORCA025-RAPID12 (can be run by removing the RAPID36 nest from the AGRIF_FixedGrids.in given in eORCA025-RAPID12-RAPID36)
 Resolution:
 - Horizontal: 1/4°
 - Vertical: 75 levels
 - 1/12° AGRIF nest extending over 6°N-42°N
 
-### Global eORCA025-RAPID12-RAPID36 (in progress)
+### Global eORCA025-RAPID12-RAPID36
 Resolution:
 - Horizontal: 1/4°
 - Vertical: 75 levels

@@ -1,0 +1,1 @@
+/dssgfs01/working/atb299/NEMO_cfgs/RAPID_Evolution/2_eORCA_R36_bathymetry_v3.1_cutout_R12coasts.nc
