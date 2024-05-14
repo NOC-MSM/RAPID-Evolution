@@ -59,7 +59,7 @@ Production Simulations larger than eORCA025 are best done on Archer2.
 
 Change directory to the NEMO experiment directory:
 ```shell
-cd nemo/cfgs/GLOBAL_QCO/eORCA025-RAPID12-RAPID36
+cd nemo/cfgs/AGRIF_QCO/eORCA025-RAPID12-RAPID36
 ```
 
 For the eORCA025-RAPID12-RAPID36 configuration there are currently two tested runscripts:
