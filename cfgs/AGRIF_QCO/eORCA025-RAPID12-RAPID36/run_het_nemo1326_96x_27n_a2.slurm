@@ -125,7 +125,7 @@ if [ "$PARENT_IT000" -gt 1 ]; then
         DT=${DT%.*}
         RATIO=$(( PARENT_DT / DT ))
         TSTEP=$(( (PARENT_IT000 - 1) * RATIO ))
-        IT000=$(( TSTEP + 1 / RATIO ))
+        IT000=$(( TSTEP + 1 ))
         edit_var "nn_it000" "$IT000" "$NAMELIST"
 
         # Set restart prefixes
@@ -173,7 +173,7 @@ for NAMELIST in *namelist_cfg; do
     DT=${DT%.*}
     RATIO=$(( PARENT_DT / DT ))
     TSTEP=$(( (PARENT_IT000 - 1) * RATIO ))
-    IT000=$(( TSTEP / RATIO + 1 ))
+    IT000=$(( TSTEP + 1 ))
 
     # Edit nn_itend and (possibly) ln_rst_list and nn_stocklist
     # Deal with frequency and length units (convert to hours in all cases)
@@ -204,15 +204,16 @@ for NAMELIST in *namelist_cfg; do
         # are always written even when FREQRST > 1
         #
 
-        NEXT_STOCK="$(( IT000 - 1 + YR_LEN * 24 * 60 * 60 / DT ))"
+        NEXT_STOCK="$(( IT000 - 1 + ( YR_LEN * 24 * 60 * 60 ) / DT ))"
         STOCK_LIST=$NEXT_STOCK
         LT=$(( FREQRST - 1 ))
         if [ "$LT" -gt 0 ] ; then
+          INC_YR=$START_YR
           for y in `seq 1 1 $LT`
            do
-            START_YR=$(( START_YR + 1 ))
-            YL=$( greg_length $START_YR )
-            NEXT_STOCK="$(( NEXT_STOCK + YL * 24 * 60 * 60 / DT ))"
+            INC_YR=$(( INC_YR + 1 ))
+            YL=$( greg_length $INC_YR )
+            NEXT_STOCK="$(( NEXT_STOCK + ( YL * 24 * 60 * 60 ) / DT ))"
             # stocklist is limited to length 10
             if [ "$y" -lt 10 ] ; then
               STOCK_LIST="${STOCK_LIST},${NEXT_STOCK}"
@@ -223,16 +224,16 @@ for NAMELIST in *namelist_cfg; do
         edit_var nn_stocklist "$STOCK_LIST" "$NAMELIST"
         edit_var ln_rst_list ".true." "$NAMELIST"
     elif [ "$TIME_UNITS" -eq 1 ]; then
-        ITEND=$(( IT000 - 1 + FREQRST * 24 * 60 * 60 / DT ))
+        ITEND=$(( IT000 - 1 + ( FREQRST * 24 * 60 * 60 ) / DT ))
         EXP_LENGTH=$(( LENGTH * 24 ))
         edit_var ln_rst_list ".false." "$NAMELIST"
     elif [ "$TIME_UNITS" -eq 2 ]; then
-        ITEND=$(( IT000 - 1 + FREQRST * 60 * 60 / DT ))
+        ITEND=$(( IT000 - 1 + ( FREQRST * 60 * 60 ) / DT ))
         EXP_LENGTH=$LENGTH
         edit_var ln_rst_list ".false." "$NAMELIST"
     fi
     
-    FINAL=$(( ITBEGIN - 1 + EXP_LENGTH * 60 * 60 / DT ))
+    FINAL=$(( ITBEGIN - 1 + ( EXP_LENGTH * 60 * 60 ) / DT ))
     echo "ITEND = "$ITEND
     echo "FINAL = "$FINAL
     if [ "$ITEND" -ge "$FINAL" ]; then
