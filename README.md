@@ -1,6 +1,8 @@
 # RAPID-Evolution
 
-Global configurations at eORCA025 and eORCA12 with a high resolution nest covering the RAPID array and neighbouring latitudes in the North Atlantic.
+Global eORCA025 and eORCA12 configurations with <sup>1</sup>/<sub>12</sub>&deg; and <sup>1</sup>/<sub>36</sub>&deg; nests centred over the RAPID array latitudes in the North Atlantic.
+
+<img alt="RAPID-Evolution" src="REvo_surf_curr_1998_day070.png" width="100%">
 
 
 ## Quick start on {Archer2|Anemone}
