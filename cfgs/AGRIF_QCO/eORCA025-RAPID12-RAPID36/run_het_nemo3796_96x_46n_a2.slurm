@@ -23,7 +23,7 @@ module load cray-netcdf-hdf5parallel/4.9.0.1
 # Simulation original starting time step (unchanged for LENGTHxTIME_UNITS)
   ITBEGIN=1
 # Simulation length (in TIME_UNITS)
-  LENGTH=47
+  LENGTH=48
 # Name of this script (to resubmit)
   SCRIPTNAME=run_het_nemo3796_96x_46n_a2.slurm
 #

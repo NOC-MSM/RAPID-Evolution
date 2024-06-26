@@ -27,11 +27,14 @@
     <file_definition src="file_def_nemo-oce_1d_C6.xml"/>     <!--  NEMO ocean dynamics                     -->
     <file_definition src="file_def_nemo-oce_5d_C6.xml"/>     <!--  NEMO ocean dynamics                     -->
     <file_definition src="file_def_nemo-oce_1m_C6.xml"/>     <!--  NEMO ocean dynamics                     -->
-    <file_definition src="file_def_nemo-oce_1y_C6.xml"/>     <!--  NEMO ocean dynamics                     -->
+<!--    <file_definition src="file_def_nemo-oce_1y_C6.xml"/>     <!--  NEMO ocean dynamics                     -->
+    <file_definition src="file_def_nemo-zoom1.xml"/>     <!--  NEMO ocean dynamics                     -->
+	<file_definition src="file_def_nemo-zoom2.xml"/>     <!--  NEMO ocean dynamics                     -->
 
-    <file_definition src="./file_def_nemo-ice_5d_C6.xml"/>   <!--  NEMO ocean sea ice                      -->
+
+<!--    <file_definition src="./file_def_nemo-ice_5d_C6.xml"/>   <!--  NEMO ocean sea ice                      -->
     <file_definition src="./file_def_nemo-ice_1m_C6.xml"/>   <!--  NEMO ocean sea ice                      -->
-    <file_definition src="./file_def_nemo-ice_1y_C6.xml"/>   <!--  NEMO ocean sea ice                      -->
+<!--    <file_definition src="./file_def_nemo-ice_1y_C6.xml"/>   <!--  NEMO ocean sea ice                      -->
 
 <!-- Axis definition -->
     <axis_definition src="./axis_def_nemo.xml"/>
@@ -41,6 +44,7 @@
 
 <!-- Grids definition -->
     <grid_definition   src="./grid_def_nemo.xml"/>
-  
+    <grid_definition   src="./grid_def_zoom1.xml"/>
+    <grid_definition   src="./grid_def_zoom2.xml"/>  
 
 </context>

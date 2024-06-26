@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!--
+============================================================================================================
+= grid definition = = DO NOT CHANGE =
+============================================================================================================
+-->
+
+<grid_definition>
+  <!-- T -->
+  <grid id="gridT3D_RAPID2">
+    <domain domain_ref="grid_T">
+    <zoom_domain ni="1346" ibegin="1672" nj="59" jbegin="246"/>
+    </domain>
+    <axis axis_ref="deptht" />
+  </grid>
+  <grid id="gridT2D_RAPID2">
+    <domain domain_ref="grid_T">
+    <zoom_domain ni="1346" ibegin="1672" nj="59" jbegin="246"/>
+    </domain>
+  </grid>
+  <!-- U -->
+  <grid id="gridU3D_RAPID2">
+    <domain domain_ref="grid_U">
+    <zoom_domain ni="1346" ibegin="1672" nj="59" jbegin="246"/>
+    </domain>
+    <axis axis_ref="deptht" />
+  </grid>
+  <grid id="gridU2D_RAPID2">
+    <domain domain_ref="grid_U">
+    <zoom_domain ni="1346" ibegin="1672" nj="59" jbegin="246"/>
+    </domain>
+  </grid>
+  <!-- V -->
+  <grid id="gridV3D_RAPID2">
+    <domain domain_ref="grid_V">
+    <zoom_domain ni="1346" ibegin="1672" nj="59" jbegin="246"/>
+    </domain>
+    <axis axis_ref="deptht" />
+  </grid>
+  <grid id="gridV2D_RAPID2">
+    <domain domain_ref="grid_V">
+    <zoom_domain ni="1346" ibegin="1672" nj="59" jbegin="246"/>
+    </domain>
+  </grid>
+  <!-- W -->
+  <grid id="gridW3D_RAPID2">
+    <domain domain_ref="grid_W">
+    <zoom_domain ni="1346" ibegin="1672" nj="59" jbegin="246"/>
+    </domain>
+    <axis axis_ref="deptht" />
+  </grid>
+  <grid id="gridW2D_RAPID2">
+    <domain domain_ref="grid_W">
+    <zoom_domain ni="1346" ibegin="1672" nj="59" jbegin="246"/>
+    </domain>
+  </grid>
+</grid_definition>
