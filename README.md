@@ -109,7 +109,7 @@ Resolution:
 - 1/36° AGRIF nest over the Greenland-Scotland Ridge (see IMMERSE WP6.2) -->
 
 ## Ancillary files:
-To be added
+The ancillary files are accessible via the [JASMIN Object Store](https://help.jasmin.ac.uk/docs/short-term-project-storage/using-the-jasmin-object-store/). For external users they are accessible (read-only) over HTTP using the URL prefix `https://noc-msm-o.s3-ext.jc.rl.ac.uk/rapid-evolution-ancillaries/`.
 
 ## Administrative notes:
 
