@@ -1,4 +1,4 @@
-# RAPID-Evolution   ![image](https://github.com/user-attachments/assets/8dea4b87-6591-4253-a8f7-23060f45a18f)
+# RAPID-Evolution   [![DOI](https://zenodo.org/badge/693155332.svg)](https://doi.org/10.5281/zenodo.14733916)
 
 
 Global eORCA025 configurations with <sup>1</sup>/<sub>12</sub>&deg; and <sup>1</sup>/<sub>36</sub>&deg; nests centred over the RAPID array latitudes in the North Atlantic.
