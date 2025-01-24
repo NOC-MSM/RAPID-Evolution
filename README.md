@@ -11,7 +11,7 @@ git clone git@github.com:NOC-MSM/RAPID-Evolution.git
 cd RAPID-Evolution
 ./setup {-s Archer2}
 ```
-The setup script downloads nemo, compiles tools and configurations. Setup defaults to Anemone, which is ideally suited for fast development/turnaround of smaller configurations (e.g. eORCA025). For larger configurations it is recommended to switch to Archer2.
+The setup script downloads nemo, compiles tools and configurations. Setup defaults to Anemone (the NOC's HPC system), which is ideally suited for fast development/turnaround of smaller configurations (e.g. eORCA025). For larger configurations it is recommended to switch to [Archer2](https://www.archer2.ac.uk/).
 
 The global eORCA025 and nested eORCA025-RAPID12 and eORCA025-RAPID12-RAPID36 configurations are ready to run. All that is required is:
 
