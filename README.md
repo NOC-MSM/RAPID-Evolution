@@ -1,6 +1,6 @@
 # RAPID-Evolution
 
-Global eORCA025 and eORCA12 configurations with <sup>1</sup>/<sub>12</sub>&deg; and <sup>1</sup>/<sub>36</sub>&deg; nests centred over the RAPID array latitudes in the North Atlantic.
+Global eORCA025 configurations with <sup>1</sup>/<sub>12</sub>&deg; and <sup>1</sup>/<sub>36</sub>&deg; nests centred over the RAPID array latitudes in the North Atlantic.
 
 <img alt="RAPID-Evolution" src="REvo_surf_curr_1998_day070.png" width="100%">
 
@@ -11,11 +11,9 @@ git clone git@github.com:NOC-MSM/RAPID-Evolution.git
 cd RAPID-Evolution
 ./setup {-s Archer2}
 ```
-The setup script downloads nemo, compiles tools and configurations. Setup defaults to Anemone, which is ideally suited for fast development/turnaround of smaller configurations (e.g. eORCA025). 
+The setup script downloads nemo, compiles tools and configurations. Setup defaults to Anemone, which is ideally suited for fast development/turnaround of smaller configurations (e.g. eORCA025). For larger configurations it is recommended to switch to Archer2.
 
-### For Development 
-
-The global eORCA025 and nested eORCA025-RAPID12 configurations are ready to run. All that is required is:
+The global eORCA025 and nested eORCA025-RAPID12 and eORCA025-RAPID12-RAPID36 configurations are ready to run. All that is required is:
 
 ```shell
 cd nemo/cfgs/GLOBAL_QCO/eORCA025
@@ -52,8 +50,6 @@ SCRIPTNAME=run_nemo.slurm
 # =======================================================
 ```
 
-We will start by implementing a 1/12° nest in eORCA025. This will enable faster testing and development, and provide a template for reproducing the domain at higher resolution.
-
 
 ### Submitting on Archer2 
 
@@ -73,15 +69,14 @@ sbatch run_het_nemo3796_96x_46n_a2.slurm              (Archer2)
 On 46 nodes eORCA025-RAPID12-RAPID36 completes around 3 SYPD, excluding queueing time.
 
 
-
-## Configurations:
+## Available Configurations:
 
 ### Global eORCA025
 Resolution:
 - Horizontal: 1/4°
 - Vertical: 75 levels
 
-### Global eORCA025-RAPID12 (can be run by removing the RAPID36 nest from the AGRIF_FixedGrids.in given in eORCA025-RAPID12-RAPID36)
+### Global eORCA025-RAPID12
 Resolution:
 - Horizontal: 1/4°
 - Vertical: 75 levels
@@ -95,7 +90,7 @@ Resolution:
 - 1/36° AGRIF nest extending over 19°N-31°N
 
 
-### Global eORCA12
+<!--### Global eORCA12
 Resolution:
 - Horizontal: 1/12°
 - Vertical: 75 levels
@@ -111,8 +106,10 @@ Resolution:
 - Horizontal: 1/12°
 - Vertical: 75 levels
 - 1/36° AGRIF nest extending over 19°N-31°N
-- 1/36° AGRIF nest over the Greenland-Scotland Ridge (see IMMERSE WP6.2)
+- 1/36° AGRIF nest over the Greenland-Scotland Ridge (see IMMERSE WP6.2) -->
 
+## Ancillary files:
+To be added
 
 ## Administrative notes:
 
