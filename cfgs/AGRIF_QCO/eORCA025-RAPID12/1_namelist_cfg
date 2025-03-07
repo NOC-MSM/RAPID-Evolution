@@ -47,7 +47,7 @@
     nn_ice = 0,
     ln_traqsr = .true.,
     ln_ssr = .true.,
-    ln_rnf = .false., !! TEMPORARY
+    ln_rnf = .true.,
     nn_fwb = 1,
 /
 
@@ -68,12 +68,12 @@
 /
 
 &namtra_qsr
-    sn_chl = 'merged_ESACCI_BIOMER4V1R1_CHL_REG05', -1, 'CHLA', .true.,
-             .true., 'yearly', 'weights_REG05_to_R12_bilin.nc', '',
+    sn_chl = 'merged_ESACCI_BIOMER4V1R1_CHL_REG05.nc', -1, 'CHLA', .true.,
+             .true., 'yearly', 'weights_merged_ESACCI_BIOMER4V1R1_CHL_REG05_R12.nc', '',
              '',
-    cn_dir = '/dssgfs01/scratch/acc/eORCA1/',
+    cn_dir = './1_INPUT/',
     ln_qsr_rgb = .true.,
-    nn_chldta = 0,  !! TEMPORARY
+    nn_chldta = 1,
 /
 
 &namsbc_ssr
@@ -86,7 +86,7 @@
 
 &namsbc_rnf
     cn_dir = './1_INPUT/',
-    sn_rnf = 'eORCA12_runoff_v2.4_GO6_ICB_R12.nc', -1, 'sornficb', .true., .true.,
+    sn_rnf = 'eORCA12_runoff_v2.4_GO6_ICB_R12.nc', -1, 'sorunoff', .true., .true.,
              'yearly', '', '', '',
     sn_cnf = 'eORCA12_runoff_v2.4_GO6_ICB_R12.nc', 0, 'socoefr', .false., .true.,
              'yearly', '', '', '',
@@ -104,15 +104,12 @@
 /
 
 &namlbc
+    ln_shlat2d=.false.,
     rn_shlat = 0.0,
 /
 
 &namdrg
     ln_non_lin = .true.,
-/
-
-&namdrg_bot
-    ln_boost = .true.,
 /
 
 &nambbc
