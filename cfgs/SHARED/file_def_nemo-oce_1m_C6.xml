@@ -172,7 +172,7 @@
 -->
 	</file>
 	
-        <file id="file14" name_suffix="_scalar" description="scalar variables" enabled=".true." >
+        <file id="file14" name_suffix="_scalar" type="one_file" description="scalar variables" enabled=".true." >
           <field field_ref="voltot"          name="scvoltot"   />
           <field field_ref="temptot"         name="thetaoga"   />
           <field field_ref="saltot"          name="soga"   />

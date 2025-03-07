@@ -87,7 +87,7 @@
        
      </file>
      
-     <file id="file52" name_suffix="_SBC_scalar" description="scalar variables" enabled=".true." >
+     <file id="file52" name_suffix="_SBC_scalar" type="one_file" description="scalar variables" enabled=".true." >
        <!-- global contents -->
        <field field_ref="ibgvol_tot"       name="ibgvol_tot"   />
        <field field_ref="sbgvol_tot"       name="sbgvol_tot"   />

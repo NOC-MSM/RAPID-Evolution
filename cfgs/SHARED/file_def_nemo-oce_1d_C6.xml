@@ -48,7 +48,7 @@
 	  <field field_ref="vtau"            name="sometauy"   standard_name="surface_downward_y_stress" />
 	</file>
 
-        <file id="file9" name_suffix="_scalar" description="scalar variables"  enabled=".TRUE." >
+        <file id="file9" name_suffix="_scalar" type="one_file" description="scalar variables"  enabled=".TRUE." >
 <!-- TO FIX
           <field field_ref="sshthster"       name="scsshtst"   />
 -->
