@@ -26,6 +26,7 @@ sbatch run_nemo1326_24x_v2.slurm                      (Anemone)
 cd nemo/cfgs/AGRIF_QCO/eORCA025-RAPID12
 
 sbatch run_nemo1326_24x_v2.slurm                      (Anemone)
+sbatch run_het_nemo1326_96x_27n_a2.slurm              (Archer2)
 ```
 
 ```shell
